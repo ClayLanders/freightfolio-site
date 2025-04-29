@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <title>Sign Up</title>
-  <script src="https://unpkg.com/aws-amplify@4.x/dist/aws-amplify.min.js"></script>
 </head>
 <body>
   <h2>Sign Up</h2>
@@ -15,40 +14,47 @@
     <button type="submit">Sign Up</button>
   </form>
 
+  <!-- Define initAmplify BEFORE loading Amplify -->
   <script>
-    Amplify.configure({
-      Auth: {
-        region: 'us-east-2',
-        userPoolId: 'us-east-2_H5gKrDTsk',
-        userPoolWebClientId: '55j4b92u9kgu0ufbuv31875guu',
-      }
-    });
+    function initAmplify() {
+      const { Amplify, Auth } = window.aws_amplify;
 
-    const signupForm = document.getElementById('signup-form');
-    signupForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
+      Amplify.configure({
+        Auth: {
+          region: 'us-east-2',
+          userPoolId: 'us-east-2_H5gKrDTsk',
+          userPoolWebClientId: '55j4b92u9kgu0ufbuv31875guu',
+        }
+      });
 
-      const email = document.getElementById('signup-email').value;
-      const password = document.getElementById('signup-password').value;
-      const given_name = document.getElementById('signup-given-name').value;
-      const family_name = document.getElementById('signup-family-name').value;
+      const signupForm = document.getElementById('signup-form');
+      signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-      try {
-        const result = await Auth.signUp({
-          username: email,
-          password,
-          attributes: {
-            email,
-            given_name,
-            family_name,
-          }
-        });
-        alert('Sign up successful! Check your email for a confirmation code.');
-        console.log(result);
-      } catch (error) {
-        alert('Sign up failed: ' + error.message);
-      }
-    });
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+        const given_name = document.getElementById('signup-given-name').value;
+        const family_name = document.getElementById('signup-family-name').value;
+
+        try {
+          const result = await Auth.signUp({
+            username: email,
+            password,
+            attributes: {
+              email,
+              given_name,
+              family_name,
+            }
+          });
+          alert('Sign up successful! Check your email for a confirmation code.');
+          window.location.href = 'confirm.html';
+        } catch (error) {
+          alert('Sign up failed: ' + error.message);
+        }
+      });
+    }
   </script>
+
+  <script src="https://unpkg.com/aws-amplify@4.x/dist/aws-amplify.min.js" onload="initAmplify()"></script>
 </body>
 </html>
