@@ -16,6 +16,8 @@
   </form>
 
   <script>
+    const { Amplify } = aws_amplify;
+
     Amplify.configure({
       Auth: {
         region: 'us-east-2',
@@ -31,11 +33,19 @@
       const password = document.getElementById('signup-password').value;
       const given_name = document.getElementById('signup-given-name').value;
       const family_name = document.getElementById('signup-family-name').value;
+
       try {
-        const result = await Amplify.Auth.signUp({ username, password });
+        const result = await Amplify.Auth.signUp({
+          username: email,
+          password,
+          attributes: {
+            email,
+            given_name,
+            family_name,
+          }
+        });
         alert('Sign up successful! Check your email for a confirmation code.');
         console.log(result);
-        // maybe redirect to a confirm.html page
       } catch (error) {
         alert('Sign up failed: ' + error.message);
       }
