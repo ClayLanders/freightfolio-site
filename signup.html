@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign Up</title>
+  <script src="https://unpkg.com/aws-amplify@5.x/dist/aws-amplify.min.js"></script>
+</head>
+<body>
+  <h2>Sign Up</h2>
+  <form id="signup-form">
+    <input type="text" id="signup-username" placeholder="Username" required />
+    <input type="password" id="signup-password" placeholder="Password" required />
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <script>
+    Amplify.configure({
+      Auth: {
+        region: 'us-east-2',
+        userPoolId: 'us-east-2_WG7qCDdF9',
+        userPoolWebClientId: 'b0pjcv7639mjenu82gcrie683',
+      }
+    });
+
+    const signupForm = document.getElementById('signup-form');
+    signupForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('signup-username').value;
+      const password = document.getElementById('signup-password').value;
+      try {
+        const result = await Amplify.Auth.signUp({ username, password });
+        alert('Sign up successful! Check your email for a confirmation code.');
+        console.log(result);
+        // maybe redirect to a confirm.html page
+      } catch (error) {
+        alert('Sign up failed: ' + error.message);
+      }
+    });
+  </script>
+</body>
+</html>
