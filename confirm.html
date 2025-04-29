@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <title>Confirm Account</title>
+  <link rel="stylesheet" href="auth.css">
 </head>
 <body>
-  <h2>Confirm Your Account</h2>
-  <form id="confirm-form">
-    <input type="email" id="confirm-email" placeholder="Email" required />
-    <input type="text" id="confirm-code" placeholder="Confirmation Code" required />
-    <button type="submit">Confirm</button>
-  </form>
+  <div class="container">
+    <h2>Confirm Your Account</h2>
+    <form id="confirm-form">
+      <input type="email" id="confirm-email" placeholder="Email" required />
+      <input type="text" id="confirm-code" placeholder="Confirmation Code" required />
+      <button type="submit">Confirm</button>
+    </form>
+  </div>
 
   <script>
     function initAmplify() {
