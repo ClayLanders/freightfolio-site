@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Sign Up</title>
-
-  <!-- Load Amplify library from CDN -->
-  <script src="https://unpkg.com/aws-amplify@5.x/dist/aws-amplify.min.js"></script>
+  <script src="https://unpkg.com/aws-amplify@4.x/dist/aws-amplify.min.js"></script>
 </head>
 <body>
   <h2>Sign Up</h2>
@@ -18,44 +16,38 @@
   </form>
 
   <script>
-    // Wait until the Amplify script is fully loaded
-    window.addEventListener('load', () => {
-      const Amplify = window.aws_amplify.Amplify;
-      const Auth = window.aws_amplify.Auth;
+    Amplify.configure({
+      Auth: {
+        region: 'us-east-2',
+        userPoolId: 'us-east-2_H5gKrDTsk',
+        userPoolWebClientId: '55j4b92u9kgu0ufbuv31875guu',
+      }
+    });
 
-      Amplify.configure({
-        Auth: {
-          region: 'us-east-2',
-          userPoolId: 'us-east-2_H5gKrDTsk',
-          userPoolWebClientId: '55j4b92u9kgu0ufbuv31875guu',
-        }
-      });
+    const signupForm = document.getElementById('signup-form');
+    signupForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-      const signupForm = document.getElementById('signup-form');
-      signupForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      const given_name = document.getElementById('signup-given-name').value;
+      const family_name = document.getElementById('signup-family-name').value;
 
-        const email = document.getElementById('signup-email').value;
-        const password = document.getElementById('signup-password').value;
-        const given_name = document.getElementById('signup-given-name').value;
-        const family_name = document.getElementById('signup-family-name').value;
-
-        try {
-          const result = await Auth.signUp({
-            username: email,
-            password,
-            attributes: {
-              email,
-              given_name,
-              family_name,
-            }
-          });
-          alert('Sign up successful! Check your email for a confirmation code.');
-          console.log(result);
-        } catch (error) {
-          alert('Sign up failed: ' + error.message);
-        }
-      });
+      try {
+        const result = await Auth.signUp({
+          username: email,
+          password,
+          attributes: {
+            email,
+            given_name,
+            family_name,
+          }
+        });
+        alert('Sign up successful! Check your email for a confirmation code.');
+        console.log(result);
+      } catch (error) {
+        alert('Sign up failed: ' + error.message);
+      }
     });
   </script>
 </body>
