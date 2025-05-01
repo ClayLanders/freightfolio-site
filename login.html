@@ -6,6 +6,14 @@
   <link rel="stylesheet" href="auth.css">
 </head>
 <body>
+  <header>
+    <div class="header-container">
+      <a href="index.html">
+        <img src="white-freightfolio-logo.png" width="200px" alt="freightfolio logo">
+      </a>
+    </div>
+  </header>
+  <main>
   <div class="container">
     <h2>Login</h2>
     <form id="login-form">
@@ -36,7 +44,7 @@
         try {
           const user = await Auth.signIn(username, password);
           console.log('Login successful:', user);
-          window.location.href = 'dashboard.html';
+          window.location.href = 'waitlist.html';
         } catch (error) {
           alert('Login failed: ' + error.message);
         }
@@ -45,6 +53,6 @@
   </script>
 
 <script src="https://unpkg.com/aws-amplify@4.x/dist/aws-amplify.min.js" onload="initAmplify()"></script>
-
+</main>
 </body>
 </html>
