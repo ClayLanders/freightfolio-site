@@ -7,6 +7,19 @@
 </head>
 <body>
     <div id="loading">Processing authentication...</div>
-    <script src="auth-handler.js"></script>
+    <script>
+        // Get the authorization code from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        
+        if (code) {
+            // Redirect to the React app with the code
+            window.location.href = `http://localhost:5137?code=${code}`;
+        } else {
+            // Handle error case
+            console.error('No authorization code received');
+            window.location.href = 'http://localhost:5137';
+        }
+    </script>
 </body>
 </html> 
