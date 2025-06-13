@@ -11,7 +11,7 @@
       const loginButton = document.querySelector('.btn-dark');
       loginButton.addEventListener('click', function(e) {
         e.preventDefault();
-        const loginUrl = 'https://us-east-2h5gkrdtsk.auth.us-east-2.amazoncognito.com/oauth2/authorize?client_id=55j4b92u9kgu0ufbuv31875guu&response_type=code&scope=email+openid&redirect_uri=http%3A%2F%2Flocalhost%3A5137%2Fauth-callback.html';
+        const loginUrl = 'https://us-east-2h5gkrdtsk.auth.us-east-2.amazoncognito.com/login?client_id=55j4b92u9kgu0ufbuv31875guu&response_type=code&scope=email+openid&redirect_uri=http%3A%2F%2Flocalhost%3A5137%2Fauth-callback.html';
         window.location.href = loginUrl;
       });
     });
@@ -30,7 +30,7 @@
       </nav>
       <div class="auth-buttons">
         <!-- <a href="./signup.html" class="btn btn-light">Sign Up</a> -->
-        <a href="https://us-east-2h5gkrdtsk.auth.us-east-2.amazoncognito.com/oauth2/authorize?client_id=55j4b92u9kgu0ufbuv31875guu&response_type=code&scope=email+openid&redirect_uri=http%3A%2F%2Flocalhost%3A5137%2Fauth-callback.html" class="btn btn-dark">Login</a>
+        <a href="https://us-east-2h5gkrdtsk.auth.us-east-2.amazoncognito.com/login?client_id=55j4b92u9kgu0ufbuv31875guu&response_type=code&scope=email+openid&redirect_uri=http://localhost:5137" class="btn btn-dark">Login</a>
       </div>
     </div>
   </header>
