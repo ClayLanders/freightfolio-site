@@ -11,8 +11,13 @@
       const loginButton = document.querySelector('.btn-dark');
       loginButton.addEventListener('click', function(e) {
         e.preventDefault();
-        const loginUrl = 'https://us-east-2h5gkrdtsk.auth.us-east-2.amazoncognito.com/login?client_id=55j4b92u9kgu0ufbuv31875guu&response_type=code&scope=email+openid&redirect_uri=http://localhost:5137';
-        window.location.href = loginUrl;
+        try {
+          const loginUrl = 'https://us-east-2h5gkrdtsk.auth.us-east-2.amazoncognito.com/login?client_id=55j4b92u9kgu0ufbuv31875guu&response_type=code&scope=email+openid&redirect_uri=http://localhost:5137';
+          window.location.href = loginUrl;
+        } catch (error) {
+          console.error('Login error:', error);
+          alert('There was an error initiating the login process. Please try again.');
+        }
       });
     });
   </script>
@@ -30,7 +35,7 @@
       </nav>
       <div class="auth-buttons">
         <!-- <a href="./signup.html" class="btn btn-light">Sign Up</a> -->
-        <a href="https://us-east-2h5gkrdtsk.auth.us-east-2.amazoncognito.com/login?client_id=55j4b92u9kgu0ufbuv31875guu&response_type=code&scope=email+openid&redirect_uri=http://localhost:5137" class="btn btn-dark">Login</a>
+        <button class="btn btn-dark">Login</button>
       </div>
     </div>
   </header>
