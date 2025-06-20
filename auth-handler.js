@@ -3,7 +3,7 @@ const config = {
     region: 'us-east-2',
     userPoolId: 'us-east-2_H5gKrDTsk',
     clientId: '55j4b92u9kgu0ufbuv31875guu',
-    redirectUri: 'http://localhost:5137/auth-callback.html'
+    redirectUri: 'http://localhost:5173/auth-callback.html'
 };
 
 // Function to handle the authentication callback
