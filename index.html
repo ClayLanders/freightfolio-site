@@ -12,7 +12,7 @@
       loginButton.addEventListener('click', function(e) {
         e.preventDefault();
         try {
-          const loginUrl = 'https://us-east-2h5gkrdtsk.auth.us-east-2.amazoncognito.com/login?client_id=55j4b92u9kgu0ufbuv31875guu&response_type=code&scope=email+openid&redirect_uri=http://localhost:5173';
+          const loginUrl = 'https://us-east-2h5gkrdtsk.auth.us-east-2.amazoncognito.com/login?client_id=55j4b92u9kgu0ufbuv31875guu&response_type=code&scope=email+openid&redirect_uri=http://localhost:5173/auth-callback.html';
           window.location.href = loginUrl;
         } catch (error) {
           console.error('Login error:', error);
